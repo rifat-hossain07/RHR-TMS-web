@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 // import useAuth from "../../Hooks/useAuth";
 import { useContext } from "react";
@@ -19,12 +19,15 @@ const Navbar = () => {
       )
       .catch((err) => Swal.fire(err.code));
   };
+
   const links = (
     <>
       <li>
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? " bg-orange-200" : "")}
+          className={({ isActive }) =>
+            isActive ? " bg-blue-300 text-black" : ""
+          }
         >
           Home
         </NavLink>
@@ -32,7 +35,9 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/contact"
-          className={({ isActive }) => (isActive ? "bg-orange-200" : "")}
+          className={({ isActive }) =>
+            isActive ? "bg-blue-300 text-black" : ""
+          }
         >
           Contact Us
         </NavLink>
@@ -40,52 +45,57 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/about"
-          className={({ isActive }) => (isActive ? "bg-orange-200" : "")}
+          className={({ isActive }) =>
+            isActive ? "bg-blue-300 text-black" : ""
+          }
         >
           About Us
         </NavLink>
       </li>
-      {user && (
-        <li className="">
-          <p>{user?.displayName}</p>
-        </li>
-      )}
+      {/* {user && (
+      )} */}
       {user ? (
-        <li>
-          <div className="dropdown dropdown-end p-1 mr-5">
-            <label tabIndex={0} className="avatar">
-              <div className="w-8 rounded-full">
-                <img
-                  className=""
-                  alt="https://i.ibb.co/N1nwWNp/a.png"
-                  src={user?.photoURL}
-                />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="mt-28 z-[1] p-2 shadow menu menu-horizontal dropdown-content  w-24 rounded-lg"
-            >
-              <li>
-                <NavLink
-                  onClick={handleLogOut}
-                  // className="btn btn-sm md:btn-md  "
-                >
-                  Log Out
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        </li>
+        <>
+          <li className="hidden lg:flex">
+            <p>{user?.displayName}</p>
+          </li>
+          <li className="lg:hidden">
+            <Link onClick={handleLogOut} className="">
+              Log Out
+            </Link>
+          </li>
+          <li>
+            <div className="dropdown dropdown-end p-1 mr-5 hidden lg:flex">
+              <label tabIndex={0} className="avatar">
+                <div className="w-8 rounded-full ">
+                  <img
+                    className=""
+                    alt="https://i.ibb.co/N1nwWNp/a.png"
+                    src={user?.photoURL}
+                  />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-28 z-[10] p-2 shadow menu menu-horizontal dropdown-content  w-24 rounded-lg bg-blue-300 hidden lg:flex text-black"
+              >
+                <li>
+                  <Link onClick={handleLogOut} className="bg-slate-200">
+                    Log Out
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </>
       ) : (
-        // <div className="flex gap-5">
-        // <div className="flex justify-items-center  flex-col md:flex-row text-center gap-3">
         <>
           <li>
             <NavLink
-              className={({ isActive }) => (isActive ? " bg-orange-400" : "")}
+              className={({ isActive }) =>
+                isActive ? " bg-blue-300 text-black" : ""
+              }
               to={"/login"}
-              // className="btn btn-sm md:btn-md "
             >
               Login
             </NavLink>
@@ -96,7 +106,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -122,8 +132,21 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Link to="/" className="btn btn-ghost text-xl">
+            RHR-TMS
+          </Link>
         </div>
+        <div className="navbar-end lg:hidden">
+          <p>{user?.displayName}</p>
+          <div className="w-8 avatar rounded-full ">
+            <img
+              className="rounded-full"
+              alt="https://i.ibb.co/N1nwWNp/a.png"
+              src={user?.photoURL}
+            />
+          </div>
+        </div>
+
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>

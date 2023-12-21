@@ -66,7 +66,7 @@ const AddTask = () => {
                   placeholder="description"
                   required
                   className="textarea textarea-bordered textarea-lg w-full "
-                  {...register("description", { required: true })}
+                  {...register("description")}
                 />
               </div>
               {/* Deadlines */}
@@ -79,7 +79,7 @@ const AddTask = () => {
                   placeholder="password"
                   required
                   className="input input-bordered"
-                  {...register("deadline", { required: true })}
+                  {...register("deadline")}
                 />
               </div>
               <div className="flex gap-8">
@@ -90,7 +90,7 @@ const AddTask = () => {
                   </label>
                   <select
                     className="select select-warning w-full "
-                    {...register("priority", { required: true })}
+                    {...register("priority")}
                     required
                   >
                     <option></option>
@@ -106,10 +106,8 @@ const AddTask = () => {
                   </label>
                   <select
                     className="select select-warning w-full "
-                    {...register("status", { required: true })}
-                    required
+                    {...register("status")}
                   >
-                    <option></option>
                     <option>To-Do</option>
                     <option>On-Going</option>
                     <option>Completed</option>

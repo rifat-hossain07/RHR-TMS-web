@@ -50,9 +50,9 @@ const Login = () => {
       <div className="hero min-h-screen ">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold ">Login now!</h1>
+            <h1 className="text-5xl font-bold text-blue-300">Login now!</h1>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl border-2 border-warning">
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-xl shadow-blue-300 border-2 border-blue-300">
             <form onSubmit={handleSubmit(handleLogin)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -83,16 +83,16 @@ const Login = () => {
                   <p className="text-red-600 font-semibold">{logInerror}</p>
                 )}
                 <label className="label">
+                  New Here? please
                   <Link to="/register">
-                    New Here? please
-                    <span className=" text-blue-600 link link-hover mx-1">
+                    <span className=" text-blue-600 link link-hover ">
                       Register Here
                     </span>
                   </Link>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-warning    hover:bg-white normal-case">
+                <button className="btn btn-outline hover:bg-blue-300 hover:text-black normal-case">
                   Login
                 </button>
               </div>

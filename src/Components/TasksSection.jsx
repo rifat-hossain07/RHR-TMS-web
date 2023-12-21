@@ -13,8 +13,8 @@ const TasksSection = ({ task, index, refetch }) => {
   const customStyles = {
     content: {
       content: "center",
-      height: "70%",
-      width: "95%",
+      height: "80%",
+      width: "60%",
       top: "50%",
       left: "50%",
       right: "auto",
@@ -86,9 +86,11 @@ const TasksSection = ({ task, index, refetch }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <div className="card bg-base-100 shadow-xl">
+            <div className=" card bg-base-100 shadow-xl mb-2">
               <div className="card-body">
-                <p>{task?.title}</p>
+                <p>
+                  <span className="font-bold">Title: </span> {task?.title}
+                </p>
                 <p>{task?.description}</p>
                 {task?.status === "Completed" ? (
                   <p className="text-center font-semibold text-green-400">
@@ -106,9 +108,9 @@ const TasksSection = ({ task, index, refetch }) => {
                         {task?.priority}
                       </div>
                     </div>
-                    <div className="card-actions justify-between">
+                    <div className="card-actions justify-between mt-3">
                       <button onClick={openModal} className="btn btn-outline">
-                        Update
+                        Edit
                       </button>
                       <button
                         onClick={() => deleteTask(task?._id)}
@@ -157,24 +159,24 @@ const TasksSection = ({ task, index, refetch }) => {
                 type="text"
                 defaultValue={task.description}
                 placeholder="description"
-                className="textarea textarea-bordered textarea-lg w-full "
+                className="textarea textarea-bordered md:textarea-lg w-full "
                 {...register("description")}
               />
             </div>
-            {/* Deadlines */}
-            <div className="form-control w-1/2 mx-auto ">
-              <label className="label">
-                <span className="label-text">Deadline</span>
-              </label>
-              <input
-                type="date"
-                defaultValue={task?.deadline}
-                placeholder="password"
-                className="input input-bordered"
-                {...register("deadline")}
-              />
-            </div>
-            <div className="flex gap-8">
+            <div className="flex flex-col md:flex-row gap-8">
+              {/* Deadlines */}
+              <div className="form-control md:w-1/2 ">
+                <label className="label">
+                  <span className="label-text">Deadline</span>
+                </label>
+                <input
+                  type="date"
+                  defaultValue={task?.deadline}
+                  placeholder="password"
+                  className="input input-bordered"
+                  {...register("deadline")}
+                />
+              </div>
               {/* Priority */}
               <div className="form-control md:w-1/2">
                 <label className="label">
@@ -185,28 +187,26 @@ const TasksSection = ({ task, index, refetch }) => {
                   className="select select-bordered w-full "
                   {...register("priority")}
                 >
-                  <option></option>
                   <option>Low</option>
                   <option>Moderate</option>
                   <option>High</option>
                 </select>
               </div>
-              {/* Status */}
-              <div className="form-control md:w-1/2">
-                <label className="label">
-                  <span className="label-text">Select tasks Status</span>
-                </label>
-                <select
-                  defaultValue={task?.status}
-                  className="select select-bordered w-full "
-                  {...register("status")}
-                >
-                  <option></option>
-                  <option>To-Do</option>
-                  <option>On-Going</option>
-                  <option>Completed</option>
-                </select>
-              </div>
+            </div>
+            {/* Status */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Select tasks Status</span>
+              </label>
+              <select
+                defaultValue={task?.status}
+                className="select select-bordered w-full "
+                {...register("status")}
+              >
+                <option>To-Do</option>
+                <option>On-Going</option>
+                <option>Completed</option>
+              </select>
             </div>
             <div className="form-control mt-6 text-center flex-row justify-evenly">
               <button>

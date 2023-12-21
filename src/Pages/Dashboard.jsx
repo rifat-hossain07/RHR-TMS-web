@@ -47,12 +47,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div>
-        <div className="flex flex-col lg:flex-row-reverse items-center text-center lg:text-left justify-center mx-auto">
-          <div>
+        <div className="flex flex-col lg:flex-row-reverse items-center text-center lg:text-left justify-center mx-auto w-1/2 rounded-xl bg-blue-200 p-4 text-black shadow-lg ">
+          <div className="mx-5">
             <img
-              className="w-1/2 mx-auto rounded-xl"
+              className="w-40 bg-slate-300 shadow-lg shadow-blue-200 mx-auto rounded-xl"
               src={user?.photoURL}
               alt="https://i.ibb.co/N1nwWNp/a.png"
             />
@@ -80,17 +80,19 @@ const Dashboard = () => {
             <p>No Task Available !</p>
           </div>
         ) : (
-          <div className="flex justify-center w-full gap-5 mt-5 ">
+          <div className="flex justify-center  gap-5 m-5 ">
             <DragDropContext onDragEnd={onDragEnd}>
               {/* To-Do */}
               <div className="w-1/3">
-                <h2 className="card-title bg-slate-100 p-2">To-Do List:</h2>
+                <h2 className="card-title rounded-t-xl bg-blue-300 text-black p-2">
+                  To-Do List:
+                </h2>
                 <Droppable droppableId="To-Do">
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className="min-h-screen"
+                      className="min-h-screen bg-red-100 rounded-b-xl p-2"
                     >
                       {taskData
                         ?.filter((task) => task.status === "To-Do")
@@ -119,13 +121,15 @@ const Dashboard = () => {
               </div>
               {/* On-Going */}
               <div className="w-1/3">
-                <h2 className="card-title bg-slate-100 p-2">On-Going List:</h2>
+                <h2 className="card-title rounded-t-xl bg-blue-300 text-black p-2">
+                  On-Going List:
+                </h2>
                 <Droppable droppableId="On-Going">
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className="min-h-screen"
+                      className="min-h-screen bg-yellow-100 rounded-b-xl p-2 "
                     >
                       {taskData
                         ?.filter((task) => task.status === "On-Going")
@@ -154,13 +158,15 @@ const Dashboard = () => {
               </div>
               {/* Completed */}
               <div className="w-1/3">
-                <h2 className="card-title bg-slate-100 p-2">Completed List:</h2>
+                <h2 className="card-title rounded-t-xl bg-blue-300 text-black p-2">
+                  Completed List:
+                </h2>
                 <Droppable droppableId="Completed">
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className="min-h-screen"
+                      className="min-h-screen bg-green-100 rounded-b-xl p-2"
                     >
                       {taskData
                         ?.filter((task) => task.status === "Completed")

@@ -78,9 +78,11 @@ const Register = () => {
       <div className=" hero">
         <div className="">
           <div className="text-center mb-5 ">
-            <h1 className="text-3xl md:text-4xl font-bold ">Register Here!</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-blue-300">
+              Register Here!
+            </h1>
           </div>
-          <div className=" card border-2 border-warning text-black shadow-xl mx-2 md:mx-5">
+          <div className=" card border-2 border-blue-300  shadow-xl shadow-blue-300 mx-2 md:mx-5">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               {/* Name */}
               <div className="form-control">
@@ -103,7 +105,7 @@ const Register = () => {
                 <input
                   type="file"
                   {...register("photo")}
-                  className="file-input file-input-bordered file-input-warning w-full "
+                  className="file-input file-input-bordered file-input-info w-full "
                 />
               </div>
 
@@ -137,17 +139,17 @@ const Register = () => {
               {registerError && (
                 <p className="text-red-600 font-semibold">{registerError}</p>
               )}
+              <label className="label">
+                Already Have an account ?
+                <Link to="/login">
+                  <span className=" text-blue-600 link link-hover mx-1">
+                    Login Here..
+                  </span>
+                </Link>
+              </label>
+              {/* <input type="submit" /> */}
               <div className="form-control mt-6 text-center">
-                <p className="mb-3">
-                  Already Have an account ?{" "}
-                  <Link to={"/login"}>
-                    <span className="text-blue-600 link link-hover mb-2">
-                      Login Here..
-                    </span>
-                  </Link>
-                </p>
-                {/* <input type="submit" /> */}
-                <button className="btn btn-warning  hover:text-black hover:bg-white normal-case ">
+                <button className="btn btn-outline hover:bg-blue-300 hover:text-black normal-case ">
                   Register
                 </button>
               </div>
