@@ -5,6 +5,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Dashboard from "../Pages/Dashboard";
 import Private from "./Private";
+import AddTask from "../Pages/AddTask";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ const router = createBrowserRouter([
         element: (
           <Private>
             <Dashboard />,
+          </Private>
+        ),
+      },
+      {
+        path: "/addTask",
+        element: (
+          <Private>
+            <AddTask />,
           </Private>
         ),
       },
