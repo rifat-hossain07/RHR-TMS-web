@@ -14,7 +14,7 @@ const Home = () => {
         <div className="hero-content flex-col-reverse lg:flex-row-reverse ">
           <img
             src="https://i.ibb.co/TcGmDPD/task-banner.jpg"
-            className="max-w-lg rounded-lg shadow-2xl"
+            className="max-w-lg rounded-lg bg-transparent"
           />
           <div>
             <h1 className="text-5xl font-bold ">Manage Your Tasks!</h1>

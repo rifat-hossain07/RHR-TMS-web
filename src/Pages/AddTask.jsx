@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Button from "../Components/Shared/Button";
 import useAuth from "../Hooks/useAuth";
@@ -31,12 +31,15 @@ const AddTask = () => {
       navigate("/dashboard");
     }
   };
+
   return (
     <div>
-      <div className=" hero">
-        <div className="">
+      <div className=" flex  justify-center">
+        <div className="w-1/2">
           <div className="text-center mb-5 ">
-            <h1 className="text-3xl md:text-4xl font-bold ">Register Here!</h1>
+            <h1 className="text-3xl md:text-4xl font-bold ">
+              Add your Task Here!
+            </h1>
           </div>
           <div className=" card border-2 border-warning text-black shadow-xl mx-2 md:mx-5">
             <form onSubmit={handleSubmit(handleAddTask)} className="card-body">
@@ -56,13 +59,13 @@ const AddTask = () => {
               {/* Description */}
               <div className="form-control  ">
                 <label className="label">
-                  <span className="label-text">description</span>
+                  <span className="label-text">Description</span>
                 </label>
-                <input
+                <textarea
                   type="text"
                   placeholder="description"
                   required
-                  className="input input-bordered"
+                  className="textarea textarea-bordered textarea-lg w-full "
                   {...register("description", { required: true })}
                 />
               </div>
@@ -79,43 +82,47 @@ const AddTask = () => {
                   {...register("deadline", { required: true })}
                 />
               </div>
-              {/* Priority */}
-              <div className="form-control md:w-1/2">
-                <label className="label">
-                  <span className="label-text">Select tasks Priority</span>
-                </label>
-                <select
-                  className="select select-warning w-full "
-                  {...register("priority", { required: true })}
-                  required
-                >
-                  <option></option>
-                  <option>Low</option>
-                  <option>Moderate</option>
-                  <option>High</option>
-                </select>
+              <div className="flex gap-8">
+                {/* Priority */}
+                <div className="form-control md:w-1/2">
+                  <label className="label">
+                    <span className="label-text">Select tasks Priority</span>
+                  </label>
+                  <select
+                    className="select select-warning w-full "
+                    {...register("priority", { required: true })}
+                    required
+                  >
+                    <option></option>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                  </select>
+                </div>
+                {/* Status */}
+                <div className="form-control md:w-1/2">
+                  <label className="label">
+                    <span className="label-text">Select tasks Status</span>
+                  </label>
+                  <select
+                    className="select select-warning w-full "
+                    {...register("status", { required: true })}
+                    required
+                  >
+                    <option></option>
+                    <option>To-Do</option>
+                    <option>On-Going</option>
+                    <option>Completed</option>
+                  </select>
+                </div>
               </div>
-              {/* Priority */}
-              <div className="form-control md:w-1/2">
-                <label className="label">
-                  <span className="label-text">Select tasks Status</span>
-                </label>
-                <select
-                  className="select select-warning w-full "
-                  {...register("status", { required: true })}
-                  required
-                >
-                  <option></option>
-                  <option>To-Do</option>
-                  <option>On-Going</option>
-                  <option>Completed</option>
-                </select>
-              </div>
-              <div className="form-control mt-6 text-center">
+              <div className="form-control mt-6 text-center flex-row justify-evenly">
                 <button>
                   <Button text="add" />
                 </button>
-                {/* <input type="submit" /> */}
+                <Link to="/dashboard">
+                  <Button text="go back" />
+                </Link>
               </div>
             </form>
           </div>

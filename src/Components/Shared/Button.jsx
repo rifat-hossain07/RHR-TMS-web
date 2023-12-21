@@ -2,7 +2,7 @@
 
 const Button = ({ text }) => {
   return (
-    <div className="btn  btn-sm lg:btn-md btn-outline shadow-md     normal-case ">
+    <div className="btn  btn-sm lg:btn-md btn-outline shadow-md capitalize ">
       {text}
     </div>
   );
