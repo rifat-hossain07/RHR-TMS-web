@@ -34,12 +34,12 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/contact"
+          to="/testimonial"
           className={({ isActive }) =>
-            isActive ? "bg-blue-300 text-black" : ""
+            isActive ? " bg-blue-300 text-black" : ""
           }
         >
-          Contact Us
+          Testimonials
         </NavLink>
       </li>
       <li>
@@ -50,6 +50,16 @@ const Navbar = () => {
           }
         >
           About Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive ? "bg-blue-300 text-black" : ""
+          }
+        >
+          Contact Us
         </NavLink>
       </li>
       {/* {user && (
@@ -105,8 +115,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
-      <div className="navbar ">
+    <div className="">
+      <div className=" navbar border-2 bg-blue-200">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

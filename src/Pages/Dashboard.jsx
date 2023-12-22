@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import TasksSection from "../Components/TasksSection";
 import Swal from "sweetalert2";
+import Header from "../Components/Shared/Header";
 // import Completed from "../Components/Completed";
 const Dashboard = () => {
   const { user } = useAuth();
@@ -47,8 +48,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <div>
+        <Header text={`Welcome ${user?.displayName}`} />
         <div className="flex flex-col lg:flex-row-reverse items-center text-center lg:text-left justify-center mx-auto w-1/2 rounded-xl bg-blue-200 p-4 text-black shadow-lg ">
           <div className="mx-5">
             <img
@@ -70,7 +72,9 @@ const Dashboard = () => {
         </div>
         {/* Tasks */}
         <div className="text-center">
-          <h1 className="text-center text-3xl font-bold my-5">Tasks:</h1>
+          <h1 className="text-center text-2xl md:text-3xl font-bold my-5 underline">
+            Tasks:
+          </h1>
           <Link to="/addTask">
             <Button text="Add New Task" />
           </Link>
@@ -80,10 +84,10 @@ const Dashboard = () => {
             <p>No Task Available !</p>
           </div>
         ) : (
-          <div className="flex justify-center  gap-5 m-5 ">
+          <div className="flex flex-col md:flex-row justify-center  gap-5 m-5 ">
             <DragDropContext onDragEnd={onDragEnd}>
               {/* To-Do */}
-              <div className="w-1/3">
+              <div className="md:w-1/3">
                 <h2 className="card-title rounded-t-xl bg-blue-300 text-black p-2">
                   To-Do List:
                 </h2>
@@ -120,7 +124,7 @@ const Dashboard = () => {
                 </Droppable>
               </div>
               {/* On-Going */}
-              <div className="w-1/3">
+              <div className="md:w-1/3">
                 <h2 className="card-title rounded-t-xl bg-blue-300 text-black p-2">
                   On-Going List:
                 </h2>
@@ -157,7 +161,7 @@ const Dashboard = () => {
                 </Droppable>
               </div>
               {/* Completed */}
-              <div className="w-1/3">
+              <div className="md:w-1/3">
                 <h2 className="card-title rounded-t-xl bg-blue-300 text-black p-2">
                   Completed List:
                 </h2>
