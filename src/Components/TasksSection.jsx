@@ -195,7 +195,7 @@ const TasksSection = ({ task, index, refetch }) => {
             </div>
             <div className="form-control mt-6 text-center flex-row justify-evenly">
               <button>
-                <Button text="add" />
+                <Button text="update" />
               </button>
               <button onClick={closeModal}>
                 <Button text="Close" />

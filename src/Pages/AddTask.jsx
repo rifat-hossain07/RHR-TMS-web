@@ -33,13 +33,13 @@ const AddTask = () => {
   return (
     <div>
       <div className=" flex  justify-center">
-        <div className="w-1/2">
+        <div className="lg:w-1/2">
           <div className="text-center mb-5 ">
-            <h1 className="text-3xl md:text-4xl font-bold ">
+            <h1 className="text-2xl md:text-4xl font-bold ">
               Add your Task Here!
             </h1>
           </div>
-          <div className=" card border-2 border-warning text-black shadow-xl mx-2 md:mx-5">
+          <div className=" card border-2 border-blue-300 text-black shadow-xl mx-2 md:mx-5">
             <form onSubmit={handleSubmit(handleAddTask)} className="card-body">
               {/* Title */}
               <div className="form-control">
@@ -80,14 +80,14 @@ const AddTask = () => {
                   {...register("deadline")}
                 />
               </div>
-              <div className="flex gap-8">
+              <div className="flex flex-col md:flex-row md:gap-8">
                 {/* Priority */}
-                <div className="form-control md:w-1/2">
+                <div className="form-control lg:w-1/2">
                   <label className="label">
                     <span className="label-text">Select tasks Priority</span>
                   </label>
                   <select
-                    className="select select-warning w-full "
+                    className="select select-blue-300 w-full "
                     {...register("priority")}
                     required
                   >
@@ -98,12 +98,12 @@ const AddTask = () => {
                   </select>
                 </div>
                 {/* Status */}
-                <div className="form-control md:w-1/2">
+                <div className="form-control lg:w-1/2">
                   <label className="label">
                     <span className="label-text">Select tasks Status</span>
                   </label>
                   <select
-                    className="select select-warning w-full "
+                    className="select select-blue-300 w-full "
                     {...register("status")}
                   >
                     <option>To-Do</option>
