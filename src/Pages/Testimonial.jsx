@@ -4,8 +4,14 @@ import Header from "../Components/Shared/Header";
 const Testimonial = () => {
   return (
     <div>
-      <Header text="Testimonials" />
-      <div className="  bg-blue-200 ">
+      <div data-aos="fade-down" data-aos-duration="1000">
+        <Header text="Testimonials" />
+      </div>
+      <div
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        className="  bg-blue-200 "
+      >
         <Carousel
           className="py-16"
           showArrows={true}
@@ -20,7 +26,7 @@ const Testimonial = () => {
           emulateTouch={true}
           autoFocus={true}
           selectedItem={0}
-          interval={3000}
+          interval={2000}
           transitionTime={900}
           swipeScrollTolerance={5}
         >

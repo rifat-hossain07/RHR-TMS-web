@@ -2,11 +2,14 @@ import Button from "../Components/Shared/Button";
 import { FcHome, FcPhone } from "react-icons/fc";
 import { MdEmail } from "react-icons/md";
 import Header from "../Components/Shared/Header";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   return (
     <div>
-      <Header text="Contact Us" />
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <Header text="Contact Us" />
+      </div>
       <div className="hero md:min-h-screen">
         <div className="hero-content flex flex-col lg:flex-row  lg:gap-40">
           <div>
@@ -54,7 +57,7 @@ const Contact = () => {
                   </div>
                   <div
                     onClick={() =>
-                      alert("Your Message was sent successfully !")
+                      toast("Your Message was sent successfully !")
                     }
                     className="form-control"
                   >

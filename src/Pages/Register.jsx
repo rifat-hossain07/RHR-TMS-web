@@ -1,11 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { updateProfile } from "firebase/auth";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
+import { toast } from "react-toastify";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
@@ -44,13 +44,8 @@ const Register = () => {
           displayName: Name,
           photoURL: photo,
         }).then(() => {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            text: `${Name} Successfully Registered !`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          toast(`${Name} Successfully Registered !`);
+
           navigate("/login");
         });
       })
@@ -62,13 +57,8 @@ const Register = () => {
     setRegisterError("");
     googleLogIn()
       .then(() => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          text: "Successfully! Registered & Logged In! ",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast("Successfully! Registered & Logged In!");
+
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => setRegisterError(error));

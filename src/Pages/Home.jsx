@@ -1,22 +1,29 @@
 import { Link } from "react-router-dom";
+import Benifits from "../Components/Shared/Benifits";
 
 /* eslint-disable react/no-unescaped-entities */
 const Home = () => {
   return (
     <div>
       <div
-        className="hero lg:h-[500px] bg-cover text-black"
+        className="hero md:h-[500px] bg-cover text-black"
         style={{
           backgroundImage:
             "url(https://i.ibb.co/ck7bpMF/16078483-low-poly-banner-design-1711.jpg)",
         }}
       >
         <div className="hero-content flex-col-reverse md:flex-row-reverse ">
-          <img
-            src="/banner.png"
-            className=" md:max-w-xs lg:max-w-lg rounded-lg bg-transparent"
-          />
-          <div className="w-full  md:w-1/2 text-center lg:text-left">
+          <div data-aos="fade-up" data-aos-duration="1000">
+            <img
+              src="/banner.png"
+              className=" md:max-w-xs lg:max-w-lg rounded-lg bg-transparent"
+            />
+          </div>
+          <div
+            data-aos="fade-down"
+            data-aos-duration="1000"
+            className="w-full  md:w-1/2 text-center md:text-left"
+          >
             <h1 className="text-2xl lg:text-5xl font-bold ">
               Manage Your Tasks!
             </h1>
@@ -34,6 +41,9 @@ const Home = () => {
             </Link>
           </div>
         </div>
+      </div>
+      <div>
+        <Benifits />
       </div>
     </div>
   );

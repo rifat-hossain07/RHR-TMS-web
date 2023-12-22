@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import Swal from "sweetalert2";
+
 import useAuth from "../Hooks/useAuth";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -18,13 +19,8 @@ const Login = () => {
     logInUser(email, password)
       .then(() => {
         reset();
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          text: "Successfully! Logged In! ",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast("Successfully! Logged In!");
+
         navigate(location?.state ? location.state : "/");
       })
       .catch((err) => setLogInError(err.code));
@@ -34,13 +30,8 @@ const Login = () => {
     setLogInError("");
     googleLogIn()
       .then(() => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          text: "Successfully! Registered & Logged In! ",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast("Successfully! Registered & Logged In!");
+
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => setLogInError(error.code));

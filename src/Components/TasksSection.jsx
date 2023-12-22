@@ -1,15 +1,17 @@
 import axios from "axios";
 import { Draggable } from "react-beautiful-dnd";
-import Swal from "sweetalert2";
+
 import Modal from "react-modal";
 import { useState } from "react";
 import Button from "./Shared/Button";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 /* eslint-disable react/prop-types */
 const TasksSection = ({ task, index, refetch }) => {
   const { register, handleSubmit } = useForm();
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modal2IsOpen, set2IsOpen] = useState(false);
   const customStyles = {
     content: {
       content: "center",
@@ -23,11 +25,18 @@ const TasksSection = ({ task, index, refetch }) => {
       transform: "translate(-50%, -50%)",
     },
   };
+
   function openModal() {
     setIsOpen(true);
   }
   function closeModal() {
     setIsOpen(false);
+  }
+  function open2Modal() {
+    set2IsOpen(true);
+  }
+  function close2Modal() {
+    set2IsOpen(false);
   }
   const updateTask = async (data) => {
     const title = data.title;
@@ -37,45 +46,24 @@ const TasksSection = ({ task, index, refetch }) => {
     const status = data.status;
     const tasks = { title, description, deadline, priority, status };
     const res = await axios.put(
-      `http://localhost:5000/tasks/update/${task?._id}`,
+      `https://task-manage-backend-nine.vercel.app/tasks/update/${task?._id}`,
       tasks
     );
     if (res.data) {
-      Swal.fire({
-        title: "Updated!",
-        text: "Your task has been updated.",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast(`Your task updated successfully !
+      New Deadline for this task is: ${deadline}`);
       refetch();
       setIsOpen(false);
     }
   };
-  const deleteTask = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        const res = await axios.delete(`http://localhost:5000/delete/${id}`);
-        if (res.data.deletedCount > 0) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your task has been deleted.",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          refetch();
-        }
-      }
-    });
+  const deleteTask = async (id) => {
+    const res = await axios.delete(
+      `https://task-manage-backend-nine.vercel.app/delete/${id}`
+    );
+    if (res.data.deletedCount > 0) {
+      toast("Your task has been deleted!");
+      refetch();
+    }
   };
   return (
     <>
@@ -112,10 +100,7 @@ const TasksSection = ({ task, index, refetch }) => {
                       <button onClick={openModal} className="btn btn-outline">
                         Edit
                       </button>
-                      <button
-                        onClick={() => deleteTask(task?._id)}
-                        className="btn btn-outline"
-                      >
+                      <button onClick={open2Modal} className="btn btn-outline">
                         Delete
                       </button>
                     </div>
@@ -217,6 +202,35 @@ const TasksSection = ({ task, index, refetch }) => {
               </button>
             </div>
           </form>
+        </div>
+      </Modal>
+      {/* Modal 2 for delete confirmation */}
+      <Modal
+        isOpen={modal2IsOpen}
+        //   onAfterOpen={afterOpenModal}
+        onRequestClose={close2Modal}
+        style={customStyles}
+        contentLabel=" Modal"
+      >
+        <div className="mt-24  text-center">
+          <p className="text-2xl font-bold">
+            Are you sure you want to delete this task?
+          </p>
+          <p className="text-lg font-medium">Task title: {task?.title}</p>
+          <p className="text-red-500 text-xl font-semibold">
+            You will not be able to revert this!
+          </p>
+          <div className="form-control mt-6 text-center flex-row justify-center gap-14">
+            <button
+              className=" rounded-lg"
+              onClick={() => deleteTask(task?._id)}
+            >
+              <Button text="Yes! Delete it" />
+            </button>
+            <button onClick={close2Modal}>
+              <Button text="Cancel" />
+            </button>
+          </div>
         </div>
       </Modal>
     </>

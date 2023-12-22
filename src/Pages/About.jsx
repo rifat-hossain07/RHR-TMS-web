@@ -5,8 +5,14 @@ const About = () => {
     <div>
       {/* About Us */}
       <div>
-        <Header text="About Us" />
-        <div className="mx-5 lg:mx-20 mb-5 text-clip gap-20 grid grid-flow-row md:grid-flow-col  justify-between">
+        <div data-aos="fade-up" data-aos-duration="1000">
+          <Header text="About Us" />
+        </div>
+        <div
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          className="mx-5 lg:mx-20 mb-5 text-clip gap-20 grid grid-flow-row md:grid-flow-col  justify-between"
+        >
           <p className="indent-2">
             <span className="text-blue-400 text-3xl border-l-2 border-l-blue-400 pl-2">
               R

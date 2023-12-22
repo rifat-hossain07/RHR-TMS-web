@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import Button from "../Components/Shared/Button";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddTask = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -17,16 +17,14 @@ const AddTask = () => {
     const priority = data.priority;
     const status = data.status;
     const tasks = { title, description, deadline, priority, status, email };
-    const res = await axios.post("http://localhost:5000/addTask", tasks);
+    const res = await axios.post(
+      "https://task-manage-backend-nine.vercel.app/addTask",
+      tasks
+    );
     console.log(res);
     if (res.data.insertedId) {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        text: ` Successfully Registered !`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast(`Your task added successfully !
+      Deadline for this task is: ${deadline}`);
       reset();
       navigate("/dashboard");
     }

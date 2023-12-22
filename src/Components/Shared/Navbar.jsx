@@ -1,23 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
-import Swal from "sweetalert2";
 // import useAuth from "../../Hooks/useAuth";
 import { useContext } from "react";
 import { context } from "../ContextProvider/Provider";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(context);
   const handleLogOut = () => {
     logOutUser()
-      .then(() =>
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          text: "LogOut Successfully!",
-          showConfirmButton: false,
-          timer: 1500,
-        })
-      )
-      .catch((err) => Swal.fire(err.code));
+      .then(() => toast("Successfully Logged Out !"))
+      .catch((err) => toast(err.code));
   };
 
   const links = (

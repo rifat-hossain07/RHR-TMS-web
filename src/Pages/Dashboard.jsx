@@ -7,15 +7,17 @@ import useAuth from "../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import TasksSection from "../Components/TasksSection";
-import Swal from "sweetalert2";
 import Header from "../Components/Shared/Header";
+import { toast } from "react-toastify";
 // import Completed from "../Components/Completed";
 const Dashboard = () => {
   const { user } = useAuth();
   const { data: taskData, refetch } = useQuery({
     queryKey: ["TasksData"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/tasks/${user?.email}`);
+      const res = await axios.get(
+        `https://task-manage-backend-nine.vercel.app/tasks/${user?.email}`
+      );
       return res.data;
     },
   });
@@ -30,18 +32,14 @@ const Dashboard = () => {
       const status = { status: destination.droppableId };
       console.log(draggableId);
       const res = await axios.put(
-        `http://localhost:5000/tasks/${draggableId}`,
+        `https://task-manage-backend-nine.vercel.app/tasks/${draggableId}`,
         status
       );
       console.log(res);
       if (res.data.modifiedCount > 0) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          text: `Successfully! updated your to ${status.status} `,
-          showConfirmButton: false,
-          timer: 1000,
-        });
+        toast(`Successfully! updated your task to 
+        ${status.status}`);
+
         refetch();
       }
     }
@@ -50,8 +48,14 @@ const Dashboard = () => {
   return (
     <div>
       <div>
-        <Header text={`Welcome ${user?.displayName}`} />
-        <div className="flex flex-col lg:flex-row-reverse items-center text-center lg:text-left justify-center mx-auto w-1/2 rounded-xl bg-blue-200 p-4 text-black shadow-lg ">
+        <div data-aos="fade-down" data-aos-duration="1000">
+          <Header text={`Welcome ${user?.displayName}`} />
+        </div>
+        <div
+          data-aos="flip-left"
+          data-aos-duration="1000"
+          className="flex flex-col lg:flex-row-reverse items-center text-center lg:text-left justify-center mx-auto w-1/2 rounded-xl bg-blue-200 p-4 text-black shadow-lg "
+        >
           <div className="mx-5">
             <img
               className="w-40 bg-slate-300 shadow-lg shadow-blue-200 mx-auto rounded-xl"
@@ -71,7 +75,11 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Tasks */}
-        <div className="text-center">
+        <div
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          className="text-center"
+        >
           <h1 className="text-center text-2xl md:text-3xl font-bold my-5 underline">
             Tasks:
           </h1>
