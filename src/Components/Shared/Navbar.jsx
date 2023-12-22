@@ -138,16 +138,14 @@ const Navbar = () => {
             RHR-TMS
           </Link>
         </div>
-        <div className="navbar-end lg:hidden">
-          <p>{user?.displayName}</p>
-          <div className="w-8 avatar rounded-full ">
-            <img
-              className="rounded-full"
-              alt="https://i.ibb.co/N1nwWNp/a.png"
-              src={user?.photoURL}
-            />
+        {user && (
+          <div className="navbar-end lg:hidden">
+            <p>{user?.displayName}</p>
+            <div className="w-8 avatar rounded-full ">
+              <img className="rounded-full" src={user?.photoURL} />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>

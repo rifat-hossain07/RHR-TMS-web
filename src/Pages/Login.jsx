@@ -20,7 +20,6 @@ const Login = () => {
       .then(() => {
         reset();
         toast("Successfully! Logged In!");
-
         navigate(location?.state ? location.state : "/");
       })
       .catch((err) => setLogInError(err.code));
@@ -31,7 +30,6 @@ const Login = () => {
     googleLogIn()
       .then(() => {
         toast("Successfully! Registered & Logged In!");
-
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => setLogInError(error.code));

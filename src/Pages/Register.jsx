@@ -7,6 +7,7 @@ import useAuth from "../Hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+console.log(image_hosting_key);
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
@@ -40,13 +41,13 @@ const Register = () => {
     const photo = res.data.data.display_url;
     createUser(email, password)
       .then((result) => {
-        updateProfile(result.user, {
+        updateProfile(result?.user, {
           displayName: Name,
           photoURL: photo,
         }).then(() => {
-          toast(`${Name} Successfully Registered !`);
-
-          navigate("/login");
+          toast(`${Name} Successfully Registered and Logged In!`);
+          navigate(location?.state ? location.state : "/");
+          window.location.reload(true);
         });
       })
       .catch((error) => setRegisterError(error.code));
@@ -58,7 +59,6 @@ const Register = () => {
     googleLogIn()
       .then(() => {
         toast("Successfully! Registered & Logged In!");
-
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => setRegisterError(error));
@@ -94,6 +94,7 @@ const Register = () => {
                 </label>
                 <input
                   type="file"
+                  required
                   {...register("photo")}
                   className="file-input file-input-bordered file-input-info w-full "
                 />
