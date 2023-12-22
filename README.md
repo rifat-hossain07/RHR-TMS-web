@@ -1,8 +1,8 @@
 # RHR-TMS is a task management web-app using React , MongoDB, ExpressJS and Node(MERN)
 
 ## RHR-TMS Live Links:
-Firebase : [ https://rhr-tms.firebase.app/]((https://project-management-81484.firebaseapp.com/)
-Surge : [ https://rhr-tms.surge.app/]((https://friendly-desire.surge.sh/)
+Firebase : [ https://rhr-tms.firebase.app/](https://project-management-81484.firebaseapp.com/)
+Surge : [ https://rhr-tms.surge.app/](https://friendly-desire.surge.sh/)
 
 #### Some features and functionalities of RHR-TMS Website:
 
